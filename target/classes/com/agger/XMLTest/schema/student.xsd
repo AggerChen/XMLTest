@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+
+<!--自定义schema约束-->
+<xsd:schema
+        xmlns="http://www.agger.com/xml"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.agger.com/xml" elementFormDefault="qualified">
+
+    <!--  定义了一个元素students  -->
+    <xsd:element name="students" type="studentsType"/>
+
+    <!--  自定义复合类型studentsType  -->
+    <xsd:complexType name="studentsType">
+        <!-- 按顺序出现 -->
+        <xsd:sequence>
+            <!--子元素student studentType类型 最小出现0次 最大出现不限制 -->
+            <xsd:element name="student" type="studentType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!--  自定义复合类型studentType  -->
+    <xsd:complexType name="studentType">
+        <!--按顺序出现-->
+        <xsd:sequence>
+            <!--name元素 string类型-->
+            <xsd:element name="name" type="xsd:string"/>
+            <!--age元素 ageType类型-->
+            <xsd:element name="age" type="ageType"/>
+            <!--sex元素 sexType类型-->
+            <xsd:element name="sex" type="sexType"/>
+        </xsd:sequence>
+        <!--定义studentType的属性id  numberTypel类型 required必须且唯一-->
+        <xsd:attribute name="id" type="idType" use="required"/>
+    </xsd:complexType>
+
+    <!--  自定义简单类型sexType  -->
+    <xsd:simpleType name="sexType">
+        <!--基本格式string-->
+        <xsd:restriction base="xsd:string">
+            <!--枚举值-->
+            <xsd:enumeration value="male"/>
+            <xsd:enumeration value="female"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <!--  自定义简单类型ageType  -->
+    <xsd:simpleType name="ageType">
+        <!--基本类型integer-->
+        <xsd:restriction base="xsd:integer">
+            <!--最小值0-->
+            <xsd:minInclusive value="0"/>
+            <xsd:maxInclusive value="256"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <!--  自定义简单类型idType  -->
+    <xsd:simpleType name="idType">
+        <!--基本类型string-->
+        <xsd:restriction base="xsd:string">
+            <!--正则模式：agger_开头,后面接4个数字-->
+            <xsd:pattern value="agger_\d{4}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>

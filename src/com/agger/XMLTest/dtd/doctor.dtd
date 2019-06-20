@@ -1,0 +1,6 @@
+<!ELEMENT doctors (doctor*) >
+<!ELEMENT doctor (name,age,sex) >
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT age (#PCDATA)>
+<!ELEMENT sex (#PCDATA)>
+<!ATTLIST doctor id ID #REQUIRED>
