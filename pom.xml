@@ -24,6 +24,11 @@
             <artifactId>JsoupXpath</artifactId>
             <version>0.3.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>8.5.29</version>
+        </dependency>
 
     </dependencies>
 
